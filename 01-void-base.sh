@@ -33,11 +33,6 @@ sudo xbps-install -S zsh zsh-autosuggestions zsh-completions zsh-syntax-highligh
 # Now some cool Terminal tools
 sudo xbps-install -S bat curl exa fd fzf jq neovim ripgrep starship stow tmux tree unzip wget zellij zoxide
 
-# Install & configure xdg tools
-sudo xbps-install -S xdg-user-dirs xdg-utils
-
-xdg-user-dirs-update
-
 # Install flatpak
 sudo xbps-install -S flatpak
 
