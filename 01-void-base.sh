@@ -16,22 +16,27 @@ sudo xbps-install -S vsv vpm
 # Get some emoji font and nerd fonts
 sudo xbps-install -S noto-fonts-emoji nerd-fonts
 
-# Install time sync
+# Install & enable time sync
 sudo xbps-install -S chrony
 
-sudo ln -s /etc/sv/chronyd /var/service
+sudo ln -sv /etc/sv/chronyd /var/service
 
 # Install and configure socklog-void system logging daemon
 sudo xbps-install -S socklog-void
 
-sudo ln -s /etc/sv/socklog-unix /var/service/
-sudo ln -s /etc/sv/nanoklogd /var/service/
+sudo ln -sv /etc/sv/socklog-unix /var/service/
+sudo ln -sv /etc/sv/nanoklogd /var/service/
 
-# Install zsh and tools
+# Install shells & tools
+sudo xbps-install -S bash bash-completion
 sudo xbps-install -S zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+sudo xbps-install -S shellcheck
 
 # Now some cool Terminal tools
 sudo xbps-install -S bat curl exa fd fzf jq neovim ripgrep starship stow tmux tree unzip wget zellij zoxide
+
+# Install NetworkManager
+sudo xbps-install -S NetworkManager NetworkManager-openvpn network-manager-applet
 
 # Install flatpak
 sudo xbps-install -S flatpak
