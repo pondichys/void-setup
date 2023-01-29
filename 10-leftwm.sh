@@ -4,6 +4,7 @@
 # Alacritty: terminal
 # dbus: message bus system
 # elogind: login manager
+# lxappearance: settings for GTK themes
 # numlockx: activate numlock at startup
 # picom: compositor
 # rofi: application launcher
@@ -12,7 +13,7 @@
 # sxhkd: simple x hot key daemon - enables to configure key bindings independently of the tiling window manager
 # xfce-polkit: graphical authentication agent for polkit
 # xorg: meta package for X server
-sudo xbps-install -S alacritty dbus elogind numlockx picom rofi rxvt-unicode sddm sxhkd xfce-polkit xorg
+sudo xbps-install -S alacritty dbus elogind lxappearance numlockx picom rofi rxvt-unicode sddm sxhkd xfce-polkit xorg
 
 # Install xdg utils
 sudo xbps-install -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils
