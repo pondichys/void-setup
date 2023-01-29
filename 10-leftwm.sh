@@ -35,3 +35,9 @@ sudo xbps-install -S xfce4-power-manager
 
 # Lock screen
 sudo xbps-install -S betterlockscreen
+
+# Create LeftWM configuration directory
+mkdir -p $HOME/.config/leftwm
+
+# Create sxhkd configuration directory for LeftWM
+mkdir -p $HOME/.config/leftwm/sxhkd
