@@ -34,4 +34,4 @@ sudo xbps-install -S polybar
 sudo xbps-install -S xfce4-power-manager
 
 # Lock screen
-sudo xbps-install betterlockscreen
+sudo xbps-install -S betterlockscreen
