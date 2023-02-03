@@ -44,4 +44,4 @@ mkdir -p $HOME/.config/leftwm
 mkdir -p $HOME/.config/leftwm/sxhkd
 
 #♣ Dependencies for SDDM Sugar Candy theme
-sudo xbps-install -S qt5-graphicaleffects qt5-quickcontrols2
+sudo xbps-install -S qt5-graphicaleffects qt5-quickcontrols2 qt5-svg
