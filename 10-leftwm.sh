@@ -15,6 +15,9 @@
 # xorg: meta package for X server
 sudo xbps-install -S alacritty dbus-elogind elogind lxappearance numlockx picom rofi rxvt-unicode sddm sxhkd xfce-polkit xorg
 
+# Enable dbus as a service. elogind service is not needed as it will be handled by dbus service.
+# sudo ln -s /etc/sv/dbus /var/service
+
 # Install xdg utils
 sudo xbps-install -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils
 
