@@ -61,3 +61,6 @@ sudo xbps-install -S python3 python3-pip
 
 # Install keybase
 sudo xbps-install -S kbfs keybase keybase-desktop
+
+# Install Go and Rust languages
+sudo xbps-install -S go rust
