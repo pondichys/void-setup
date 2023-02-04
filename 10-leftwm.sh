@@ -46,5 +46,8 @@ mkdir -p $HOME/.config/leftwm
 # Create sxhkd configuration directory for LeftWM
 mkdir -p $HOME/.config/leftwm/sxhkd
 
-#♣ Dependencies for SDDM Sugar Candy theme
+# Dependencies for SDDM Sugar Candy theme
 sudo xbps-install -S qt5-graphicaleffects qt5-quickcontrols2 qt5-svg
+
+# GTK themes
+sudo xbps-install arc-theme arc-icon-theme
