@@ -21,6 +21,9 @@ sudo xbps-install -S alacritty dbus-elogind elogind lxappearance numlockx picom 
 # Install xdg utils
 sudo xbps-install -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils
 
+# Create current user XDG directories
+xdg-user-dirs-update
+
 # Install LeftWM
 sudo xbps-install -S leftwm
 
