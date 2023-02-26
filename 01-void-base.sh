@@ -33,16 +33,16 @@ sudo xbps-install -S zsh zsh-autosuggestions zsh-completions zsh-syntax-highligh
 sudo xbps-install -S shellcheck
 
 # Now some cool Terminal tools
-sudo xbps-install -S bat curl exa fd fzf jq neovim ripgrep starship stow tmux tree unzip wget zellij zoxide
+sudo xbps-install -S bat byobu curl exa fd fzf jq neovim ripgrep starship stow tmux tree unzip wget zoxide
 
 # Install NetworkManager
 sudo xbps-install -S NetworkManager NetworkManager-openvpn network-manager-applet
 
 # Install flatpak
-sudo xbps-install -S flatpak
+# sudo xbps-install -S flatpak
 
 # Configure flathub repo
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install git tools
 sudo xbps-install -S delta git github-cli lazygit
@@ -63,4 +63,4 @@ sudo xbps-install -S python3 python3-pip
 sudo xbps-install -S kbfs keybase keybase-desktop
 
 # Install Go and Rust languages
-sudo xbps-install -S go rust
+# sudo xbps-install -S go rust
