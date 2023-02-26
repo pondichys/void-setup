@@ -1,4 +1,4 @@
-sudo xbps-install -S pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio
+sudo xbps-install -Sy pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio
 
 # Volume icon to be able to display in systray
-sudo xbps-install -S volumeicon
+sudo xbps-install -Sy volumeicon
