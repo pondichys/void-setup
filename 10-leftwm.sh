@@ -29,11 +29,11 @@ xdg-user-dirs-update
 sudo xbps-install -Sy leftwm
 
 # Wallpaper managers
-sudo xbps-install -Sy feh variety
+sudo xbps-install -Sy feh variety pywal
 
 # Usefull components when using tiling window manager
 # Thunar file manager
-sudo xbps-install -Sy Thunar thunar-volman thunar-archive-plugin
+sudo xbps-install -Sy Thunar thunar-volman thunar-archive-plugin gvfs gvfs-afc gvfs-mtp gvfs-smb
 
 # Polybar
 sudo xbps-install -Sy polybar
@@ -45,10 +45,10 @@ sudo xbps-install -Sy xfce4-power-manager
 sudo xbps-install -Sy betterlockscreen
 
 # Create LeftWM configuration directory
-mkdir -p $HOME/.config/leftwm
+mkdir -p "$HOME"/.config/leftwm
 
 # Create sxhkd configuration directory for LeftWM
-mkdir -p $HOME/.config/leftwm/sxhkd
+mkdir -p "$HOME"/.config/leftwm/sxhkd
 
 # Dependencies for SDDM Sugar Candy theme
 sudo xbps-install -Sy qt5-graphicaleffects qt5-quickcontrols2 qt5-svg
