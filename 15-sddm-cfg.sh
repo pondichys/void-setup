@@ -9,13 +9,14 @@ cd ~/git && git clone https://gitlab.com/isseigx/simplicity-sddm-theme.git
 sudo cp -r ~/git/simplicity-sddm-theme/simplicity /usr/share/sddm/themes/
 
 # Create default SDDM config file
-sddm --example-config > ~/sddm.conf
+sddm --example-config >~/sddm.conf
 
 # Set the theme to simplicity
 sed -i 's/Current=/Current=simplicity/g' ~/sddm.conf
 
 # Move the file to /etc
 sudo mv ~/sddm.conf /etc/sddm.conf
+sudo chown /etc/sddm.conf root:root
 
 # Set keyboard layout for SDDM
-echo setxbmap "${KB}" | sudo tee -a /usr/share/sddm/scripts/Xsetup > /dev/null
+echo setxbmap "${KB}" | sudo tee -a /usr/share/sddm/scripts/Xsetup >/dev/null
