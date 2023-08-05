@@ -59,7 +59,7 @@ sudo xbps-install -Sy kubernetes-kind kubernetes-helm kubectl k9s
 sudo xbps-install -Sy tflint terraform
 
 # Install python3
-sudo xbps-install -Sy python3 python3-pip
+sudo xbps-install -Sy python3 python3-pip python3-pipx python3-neovim pre-commit 
 
 # Install keybase
 sudo xbps-install -Sy kbfs keybase keybase-desktop
