@@ -17,9 +17,8 @@ sudo xbps-install -Sy vsv vpm
 sudo xbps-install -Sy noto-fonts-emoji nerd-fonts
 
 # Install & enable time sync
-sudo xbps-install -Sy chrony
-
-sudo ln -sv /etc/sv/chronyd /var/service
+#sudo xbps-install -Sy chrony
+#sudo ln -sv /etc/sv/chronyd /var/service
 
 # Install and configure socklog-void system logging daemon
 sudo xbps-install -Sy socklog-void
@@ -35,10 +34,10 @@ sudo xbps-install -Sy zsh zsh-autosuggestions zsh-completions zsh-syntax-highlig
 sudo xbps-install -Sy base-devel
 
 # Now some cool Terminal tools
-sudo xbps-install -Sy bat bottom curl fd fzf jq lsd neovim ripgrep starship stow tmux tree unzip wget zoxide
+sudo xbps-install -Sy bat bottom chezmoi curl fd fzf jq lsd neovim ripgrep starship tmux tree unzip wget zoxide
 
 # Install NetworkManager
-sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
+#sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
 
 # Install flatpak
 # sudo xbps-install -Sy flatpak
@@ -50,19 +49,19 @@ sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-appl
 sudo xbps-install -Sy delta git github-cli lazygit
 
 # Install Docker
-sudo xbps-install docker docker-compose lazydocker
+sudo xbps-install -Sy docker docker-compose lazydocker
 
 # Install Kubernetes tools
-sudo xbps-install -Sy kubernetes-kind kubernetes-helm kubectl k9s
+#sudo xbps-install -Sy kubernetes-kind kubernetes-helm kubectl k9s
 
 # Install terraform and tools
-sudo xbps-install -Sy tflint terraform
+#sudo xbps-install -Sy tflint terraform
 
 # Install python3
-sudo xbps-install -Sy python3 python3-pip python3-pipx python3-neovim pre-commit 
+#sudo xbps-install -Sy python3 python3-pip python3-pipx python3-neovim pre-commit 
 
 # Install keybase
-sudo xbps-install -Sy kbfs keybase keybase-desktop
+#sudo xbps-install -Sy kbfs keybase keybase-desktop
 
 # Install Go and Rust languages
-sudo xbps-install -Sy go rustup
+#sudo xbps-install -Sy go rustup
