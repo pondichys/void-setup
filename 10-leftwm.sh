@@ -14,7 +14,7 @@
 # sxhkd: simple x hot key daemon - enables to configure key bindings independently of the tiling window manager
 # xfce-polkit: graphical authentication agent for polkit
 # xorg: meta package for X server
-sudo xbps-install -Sy alacritty dbus-elogind dunst elogind lxappearance numlockx picom rofi rxvt-unicode sddm sxhkd xfce-polkit xorg
+sudo xbps-install -Sy alacritty dbus dunst elogind lxappearance numlockx picom rofi rxvt-unicode sddm sxhkd xfce-polkit xorg
 
 # Enable dbus as a service. elogind service is not needed as it will be handled by dbus service.
 sudo ln -s /etc/sv/dbus /var/service
