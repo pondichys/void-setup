@@ -34,13 +34,13 @@ sudo xbps-install -Sy zsh zsh-autosuggestions zsh-completions zsh-syntax-highlig
 sudo xbps-install -Sy base-devel
 
 # Now some cool Terminal tools
-sudo xbps-install -Sy bat bottom chezmoi curl fd fzf jq lsd neovim ripgrep starship tmux tree unzip wget zoxide
+sudo xbps-install -Sy bat bottom chezmoi curl fd fzf jq lsd neovim ripgrep starship tmux unzip wget zoxide
 
 # Install NetworkManager
-#sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
+sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
 
 # Install flatpak
-# sudo xbps-install -Sy flatpak
+sudo xbps-install -Sy flatpak
 
 # Configure flathub repo
 # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
