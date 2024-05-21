@@ -6,6 +6,7 @@ sudo ln -s /etc/sv/avahi-daemon /var/service
 sudo ln -s /etc/sv/dbus /var/service
 
 sudo xbps-install -Sy xfce4
+sudo xbps-install -Sy xdg-desktop-portal xdg-desktop-portal-gtk
 
 # Support for virtual filesystems
 sudo xbps-install -Sy gvfs-afc gvfs-mtp gvfs-smb
