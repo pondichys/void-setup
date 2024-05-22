@@ -4,8 +4,8 @@
 # First update the system
 sudo xbps-install -Suy
 
-# Install Void non-free repository
-sudo xbps-install -Sy void-repo-nonfree
+# Install Void multilib and non-free repository
+sudo xbps-install -Sy void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree
 
 # Install xtools to have some maintenance tools like vkpurge and xcheckrestart
 sudo xbps-install -Sy xtools
