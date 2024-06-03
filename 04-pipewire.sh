@@ -13,7 +13,7 @@ then
 	sudo mkdir -p "${pw_conf_dir}"
 fi
 
-if [ "$(ls -A ${pw_conf_dir})" ]
+if [ -z "$(ls -A ${pw_conf_dir})" ]
 then
 	echo "Linking pipewire configuration files"
 	sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf "${pw_conf_dir}/"
@@ -26,4 +26,6 @@ then
 	else
 		echo "No /etc/xdg/autostart directory detected."
 	fi
+else
+	echo "Pipewire configuration already exists -> nothing to do!"
 fi
