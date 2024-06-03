@@ -1,8 +1,24 @@
-echo ###### NetworkManager requires dbus service - ensure it is running before continuing !
+sudo sv status NetworkManager | grep ^run 2> /dev/null
+if [ $? -eq 0 ]
+then
+	echo "NetworkManager service is already running -> nothing to do!"
+else
+	echo # Install NetworkManager
+	sudo xbps-install -Sy NetworkManager
 
-echo ####### Disabling current network services
-sudo rm /var/service/dhcpcd
-sudo rm /var/service/wpa_supplicant
+	echo ###### NetworkManager requires dbus service - ensure it is running before continuing
+	sudo sv status dbus | grep ^run 2> /dev/null
+	if [ $? -eq 0 ]
+	then
+		echo ####### Disabling current network services
+		sudo rm /var/service/dhcpcd 2> /dev/null
+		sudo rm /var/service/wpa_supplicant 2> /dev/null
 
-echo ####### Enabling NetworkManager
-sudo ln -s /etc/sv/NetworkManager /var/service
+		echo ####### Enabling NetworkManager
+		sudo ln -sf /etc/sv/NetworkManager /var/service
+	else
+		echo "dbus service is not running. Enable it and run this script again."
+	fi
+fi
+
+echo "End of Network Manager configuration."
