@@ -49,7 +49,7 @@ sudo xbps-install -Sy flatpak
 sudo xbps-install -Sy delta git github-cli lazygit
 
 # Install Docker
-sudo xbps-install -Sy docker docker-compose lazydocker
+# sudo xbps-install -Sy docker docker-compose lazydocker
 
 # Install Kubernetes tools
 #sudo xbps-install -Sy kubernetes-kind kubernetes-helm kubectl k9s
