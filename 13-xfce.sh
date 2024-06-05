@@ -5,7 +5,7 @@ sudo xbps-install -Sy avahi dbus elogind
 sudo ln -s /etc/sv/avahi-daemon /var/service
 sudo ln -s /etc/sv/dbus /var/service
 
-sudo xbps-install -Sy xfce4 xfce4-plugins
+sudo xbps-install -Sy xfce4 xfce4-plugins thunar-archive-plugin
 sudo xbps-install -Sy xdg-desktop-portal xdg-desktop-portal-gtk
 
 # Support for virtual filesystems
