@@ -1,16 +1,15 @@
 # Install everything to run Awesome window manager
 
 # Install base packages
-# Kitty: terminal
+# Wezterm: terminal
 # dbus: message bus system
-# dunst: notification daemon
 # elogind: login manager
 # lxappearance: settings for GTK themes
 # numlockx: activate numlock at startup
 # picom: compositor
 # sddm: display manager
 # xorg: meta package for X server
-sudo xbps-install -Sy kitty dbus-elogind dunst elogind lxappearance numlockx picom sddm xorg
+sudo xbps-install -Sy dbus elogind lxappearance numlockx picom sddm xorg
 
 # Enable dbus as a service. elogind service is not needed as it will be handled by dbus service.
 sudo ln -s /etc/sv/dbus /var/service
@@ -31,17 +30,19 @@ sudo xbps-install -Sy feh
 # Thunar file manager
 sudo xbps-install -Sy Thunar thunar-volman thunar-archive-plugin gvfs gvfs-afc gvfs-mtp gvfs-smb
 
-# Polybar
-# sudo xbps-install -Sy polybar
-
 # Power settings
 sudo xbps-install -Sy xfce4-power-manager
 
-# Lock screen
-# sudo xbps-install -Sy betterlockscreen
+# Create AwesomeWM configuration directory and put standard config file
+if [ ! -d  "$HOME/.config/awesomewm" ]
+then
+	mkdir -p "$HOME"/.config/awesomewm
+fi
 
-# Create AwesomeWM configuration directory
-mkdir -p "$HOME"/.config/awesomewm
+if [ ! -f "$HOME/.config/awesome/rc.lua" ]
+then
+	cp /etc/xdg/awesome/rc.lua "$HOME/.config/awesome/"
+fi
 
 # Dependencies for SDDM Sugar Candy theme
 sudo xbps-install -Sy qt5-graphicaleffects qt5-quickcontrols2 qt5-svg
