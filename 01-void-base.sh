@@ -16,10 +16,6 @@ sudo xbps-install -Sy vsv vpm
 # Get some emoji font and nerd fonts
 sudo xbps-install -Sy noto-fonts-emoji nerd-fonts
 
-# Install & enable time sync
-#sudo xbps-install -Sy chrony
-#sudo ln -sv /etc/sv/chronyd /var/service
-
 # Install and configure socklog-void system logging daemon
 sudo xbps-install -Sy socklog-void
 
