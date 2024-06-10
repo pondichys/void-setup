@@ -16,7 +16,7 @@ sed -i 's/Current=/Current=simplicity/g' ~/sddm.conf
 
 # Move the file to /etc
 sudo mv ~/sddm.conf /etc/sddm.conf
-sudo chown /etc/sddm.conf root:root
+sudo chown root:root /etc/sddm.conf
 
 # Set keyboard layout for SDDM
 echo setxbmap "${KB}" | sudo tee -a /usr/share/sddm/scripts/Xsetup >/dev/null
