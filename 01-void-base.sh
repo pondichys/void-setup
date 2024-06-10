@@ -65,3 +65,6 @@ sudo xbps-install -Sy delta git github-cli lazygit
 
 # Install Go and Rust languages
 #sudo xbps-install -Sy go rustup
+# Install zram swap service
+sudo xbps-install -Sy zramen
+#TODO: configure the compression zstd and enable the runit service
