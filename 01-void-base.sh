@@ -24,7 +24,7 @@ sudo ln -sv /etc/sv/nanoklogd /var/service/
 
 # Install shells & tools
 sudo xbps-install -Sy bash bash-completion
-sudo xbps-install -Sy zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+sudo xbps-install -Sy zsh zsh-completions
 
 # Install some base development packages
 sudo xbps-install -Sy base-devel
@@ -44,23 +44,6 @@ sudo xbps-install -Sy flatpak
 # Install git tools
 sudo xbps-install -Sy delta git github-cli lazygit
 
-# Install Docker
-# sudo xbps-install -Sy docker docker-compose lazydocker
-
-# Install Kubernetes tools
-#sudo xbps-install -Sy kubernetes-kind kubernetes-helm kubectl k9s
-
-# Install terraform and tools
-#sudo xbps-install -Sy tflint terraform
-
-# Install python3
-#sudo xbps-install -Sy python3 python3-pip python3-pipx python3-neovim pre-commit 
-
-# Install keybase
-#sudo xbps-install -Sy kbfs keybase keybase-desktop
-
-# Install Go and Rust languages
-#sudo xbps-install -Sy go rustup
 # Install zram swap service
 sudo xbps-install -Sy zramen
 #TODO: configure the compression zstd and enable the runit service
