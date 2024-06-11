@@ -8,7 +8,7 @@ sudo xbps-install -Sy kde5 kde5-baseapps
 sudo xbps-install -Sy dolphin-plugins ffmpeg ffmpegthumbs kdeconnect kdegraphics-thumbnailers kgpg plasma-wayland-protocols Appstream
 
 # Some apps
-sudo xbps-install -Sy firefox nano neofetch
+sudo xbps-install -Sy firefox micro fastfetch
 
 # Printer support
 sudo xbps-install -Sy cups cups-filters gutenprint
