@@ -47,3 +47,8 @@ sudo xbps-install -Sy delta git github-cli lazygit
 # Install zram swap service
 sudo xbps-install -Sy zramen
 #TODO: configure the compression zstd and enable the runit service
+if ! grep -iq "zstd" /etc/sv/zramen/conf
+then
+	echo "export ZRAM_COMP_ALGORITHM=zstd" | sudo tee -a /etc/sv/zramen/conf
+fi
+sudo ln -s /etc/sv/zramen /var/service/
