@@ -19,8 +19,6 @@ sudo xbps-install -Sy Thunar thunar-volman thunar-archive-plugin gvfs gvfs-afc g
 
 # Polybar
 sudo xbps-install -Sy polybar
-# There is also yambar
-sudo xbps-install -Sy yambar
 
 # Power settings
 sudo xbps-install -Sy xfce4-power-manager
