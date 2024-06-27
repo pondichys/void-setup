@@ -8,7 +8,7 @@ echo "Install DK window manager"
 sudo xbps-install -Sy dk
 
 echo "Install some utilities"
-sudo xbps-install -Sy alacritty arandr dunst feh lxappearance numlockx picom rofi sxhkd xfce-polkit
+sudo xbps-install -Sy alacritty arandr dunst feh lxappearance numlockx picom rofi sxhkd wezterm xfce-polkit
 
 # Install xdg utils
 sudo xbps-install -Sy xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils
