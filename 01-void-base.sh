@@ -31,7 +31,7 @@ sudo xbps-install -Sy fish-shell
 sudo xbps-install -Sy base-devel
 
 # Now some cool Terminal tools
-sudo xbps-install -Sy 7zip bat bottom chezmoi curl eza fastfetch fd fzf jq neovim ripgrep starship tmux unzip wget zoxide
+sudo xbps-install -Sy 7zip bat bottom chezmoi curl eza fastfetch fd fzf jq neovim ripgrep starship tmux unzip wget yazi zoxide
 
 # Install NetworkManager
 sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
