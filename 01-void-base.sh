@@ -25,6 +25,7 @@ sudo ln -sv /etc/sv/nanoklogd /var/service/
 # Install shells & tools
 sudo xbps-install -Sy bash bash-completion
 sudo xbps-install -Sy zsh zsh-completions
+sudo xbps-install -Sy fish-shell
 
 # Install some base development packages
 sudo xbps-install -Sy base-devel
