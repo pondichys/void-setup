@@ -11,7 +11,7 @@ sudo xbps-install -Sy xdg-desktop-portal xdg-desktop-portal-gtk
 # Support for virtual filesystems
 sudo xbps-install -Sy gvfs-afc gvfs-mtp gvfs-smb
 
-sudo xbps-install -Sy firefox micro nano ufetch
+sudo xbps-install -Sy firefox micro 
 
 sudo xbps-install -Sy octoxbps
 
