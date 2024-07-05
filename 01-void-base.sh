@@ -7,6 +7,9 @@ sudo xbps-install -Suy
 # Install Void multilib and non-free repository
 sudo xbps-install -Sy void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree
 
+# Install xmirror to select xbps mirror
+sudo xbps-install -Sy xmirror
+
 # Install xtools to have some maintenance tools like vkpurge and xcheckrestart
 sudo xbps-install -Sy xtools
 
