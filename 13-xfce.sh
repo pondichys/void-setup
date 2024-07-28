@@ -1,4 +1,8 @@
+#!/usr/bin/env bash
+
 # Script to setup XFCE4 on Void Linux
+
+# Install X11
 sudo xbps-install -Sy xorg
 
 sudo xbps-install -Sy avahi dbus elogind
@@ -15,7 +19,12 @@ sudo xbps-install -Sy firefox micro
 
 sudo xbps-install -Sy octoxbps
 
+# Install CUPS services for printing
 sudo xbps-install -Sy cups cups-filters
 sudo ln -s /etc/sv/cupsd /var/service
 
+# Package for wifi printing
+sudo xbps-install -Sy nss-mdns
+
+# Install SANE for scanning
 sudo xbps-install -Sy sane sane-airscan
