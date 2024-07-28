@@ -1,4 +1,4 @@
-# Arch-like installation of Void Linux with full disk encryption and btrfs
+# Arch-like installation of Void Linux with btrfs
 This procedure describes how to install Void Linux using an archlinux like experience booting from the XFCE live iso.
 
 ## Get the ISO image
