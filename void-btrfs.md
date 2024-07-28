@@ -53,7 +53,7 @@ mkfs.fat -F 32 -n EFI "${EFI_PART}"
 mkfs.btrfs -L VOID "${LINUX_PART}"
 ```
 
-# Create directories and subvolumes
+## Create directories and subvolumes
 
 ```bash
 # Set BTRFS mount options
@@ -99,7 +99,7 @@ mount -o noatime ${EFI_PART} /mnt/boot/efi
 df -h
 ```
 
-# Install the system
+## Install the system
 
 ```bash
 # Select a mirror nearby your location
@@ -154,7 +154,7 @@ xbps-install void-repo-nonfree void-repo-multilib
 xbps-install -S
 ```
 
-##Create /etc/fstab
+## Create /etc/fstab
 
 ```bash
 # Get the UUIDs of the devices and store them in variables
@@ -164,18 +164,25 @@ ROOT_UUID=$(blkid -s UUID -o value $LINUX_PART)
 cat <<EOF > /etc/fstab
 UUID=$ROOT_UUID / btrfs $BTRFS_OPTS,subvol=@ 0 1
 UUID=$ROOT_UUID /home btrfs $BTRFS_OPTS,subvol=@home 0 2
+UUID=$ROOT_UUID /opt btrfs $BTRFS_OPTS,subvol=@opt 0 2
+UUID=$ROOT_UUID /root btrfs $BTRFS_OPTS,subvol=@root 0 2
+UUID=$ROOT_UUID /srv btrfs $BTRFS_OPTS,subvol=@srv 0 2
+UUID=$ROOT_UUID /tmp btrfs $BTRFS_OPTS,subvol=@tmp 0 2
+UUID=$ROOT_UUID /var/cache btrfs $BTRFS_OPTS,subvol=@cache 0 2
+UUID=$ROOT_UUID /var/log btrfs $BTRFS_OPTS,subvol=@log 0 2
+
 UUID=$EFI_UUID /boot/efi vfat defaults,noatime 0 2
 tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 EOF
 ```
 
-Install and setup bootloader
+## Install and setup bootloader
 
 ```bash
 xbps-install grub-x86_64-efi
 
 # Install grub
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Void"
+grub-install --target=x86_64-efi --efi-directory=/boot/efi"
 ```
 
 ## Finish the installation
