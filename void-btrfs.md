@@ -112,7 +112,7 @@ mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
 # Install a base system into /mnt
-XBPS_ARCH=$ARCH xbps-install -S -R "$REPO" -r /mnt base-system linux-mainline btrfs-progs micro
+XBPS_ARCH=$ARCH xbps-install -S -R "$REPO" -r /mnt base-system linux btrfs-progs micro
 
 # Enter chroot
 xchroot /mnt
