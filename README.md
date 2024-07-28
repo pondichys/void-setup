@@ -1,7 +1,14 @@
 # void-setup
-Setup of Void Linux - currently work in progress
+Setup of Void Linux - still **work in progress**
 
-## Notes
+This repository is under heavy mutation as I am thinking about restructuring a lot and simplifying for new users.
+
+The scripts are delivered for post-installation configuration steps.
+
+If you want to know how I install my Void systems, have a look in the [documentation directory](./doc)
+
+
+## Notes - these notes are there for references only
 
 To have the **BE** keyboard mapping with **SDDM**, edit the file `/usr/share/sddm/scripts/Xsetup` and add the line `setxkbmap be`
 
