@@ -1,3 +1,4 @@
+#/usr/bin/env bash
 # Void Setup
 # Run this script to install a base configuration
 
