@@ -9,6 +9,15 @@ if [ $(id -u) = "0" ] ; then
 	exit
 fi
 
+# Check if gum package is installed
+declare gum_installed=$(xbps-query -s gum)
+if [ -z gum_installed ]; then
+	echo "gum package is needed and not present."
+	echo "You can install it with the following command: sudo xbps-install -S gum"
+	echo "After the script is finished, it will ask you if you want to remove gum."
+	exit
+fi
+
 # First update the system
 sudo xbps-install -Suy
 
