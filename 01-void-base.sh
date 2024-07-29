@@ -1,6 +1,13 @@
 #/usr/bin/env bash
+
 # Void Setup
 # Run this script to install a base configuration
+
+# Do not run as root
+if [ $(id -u) = "0" ] ; then
+	echo "Do not run this script as root or with sudo!"
+	exit
+fi
 
 # First update the system
 sudo xbps-install -Suy
