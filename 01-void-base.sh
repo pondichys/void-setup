@@ -64,3 +64,14 @@ then
 	echo "export ZRAM_COMP_ALGORITHM=zstd" | sudo tee -a /etc/sv/zramen/conf
 fi
 sudo ln -s /etc/sv/zramen /var/service/
+
+# Create some user specific directories
+declare userlocaldirs=("$HOME/.local/bin" "$HOME/.local/share/icons" "$HOME/.local/share/fonts" "$HOME/.local/share/themes")
+for dir in "${userlocaldirs[@]}"; do
+	if ! [ -d "${dir}" ]; then
+		echo "${dir} does not exist -> creating it ..."
+		mkdir "${dir}" && echo "${dir} created."
+	else
+		echo "${dir} already exists -> nothing to do."
+	fi
+done
