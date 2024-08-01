@@ -121,7 +121,7 @@ umount /mnt
 # Mount /mnt using @ BTRFS subvolume
 mount -o ${BTRFS_OPTS},subvol=@ /dev/mapper/voidluks /mnt
 
-mkdir /mnt/{home,opt,root,src,tmp,var}
+mkdir /mnt/{home,opt,root,srv,tmp,var}
 mkdir /mnt/var/{cache,log}
 
 mount -o ${BTRFS_OPTS},subvol=@home /dev/mapper/voidluks /mnt/home
@@ -208,11 +208,15 @@ LUKS_UUID=$(blkid -s UUID -o value $LINUX_PART)
 cat <<EOF > /etc/fstab
 UUID=$ROOT_UUID / btrfs $BTRFS_OPTS,subvol=@ 0 1
 UUID=$ROOT_UUID /home btrfs $BTRFS_OPTS,subvol=@home 0 2
-UUID=$ROOT_UUID /.snapshots btrfs $BTRFS_OPTS,subvol=@snapshots 0 2
+UUID=$ROOT_UUID /opt btrfs $BTRFS_OPTS,subvol=@opt 0 2
+UUID=$ROOT_UUID /root btrfs $BTRFS_OPTS,subvol=@root 0 2
+UUID=$ROOT_UUID /srv btrfs $BTRFS_OPTS,subvol=@srv 0 2
+UUID=$ROOT_UUID /tmp btrfs $BTRFS_OPTS,subvol=@tmp 0 2
+UUID=$ROOT_UUID /var/cache btrfs $BTRFS_OPTS,subvol=@cache 0 2
+UUID=$ROOT_UUID /var/log btrfs $BTRFS_OPTS,subvol=@log 0 2
 UUID=$EFI_UUID /boot/efi vfat defaults,noatime 0 2
 tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 EOF
-
 ```
 
 ## Install and setup bootloader
@@ -235,7 +239,10 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Void
 ## Create key file to avoid entering the passphrase 2 times at boot
 
 ```bash
+# Create the key file
 dd bs=515 count=4 if=/dev/urandom of=/boot/volume.key
+
+Add the file as a second key to unlock the volume
 cryptsetup luksAddKey $LINUX_PART /boot/volume.key
 
 # Set correct permissions on key
