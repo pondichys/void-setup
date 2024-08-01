@@ -47,12 +47,6 @@ sudo xbps-install -Sy 7zip bat bottom chezmoi curl eza fastfetch fd fzf jq neovi
 # Install NetworkManager
 sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
 
-# Install flatpak
-sudo xbps-install -Sy flatpak
-
-# Configure flathub repo
-# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 # Install git tools
 sudo xbps-install -Sy delta git github-cli lazygit
 
