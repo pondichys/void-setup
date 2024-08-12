@@ -64,6 +64,16 @@ installFlatpak() {
 
 # Desktop Environment menu
 deMenu() {
+    
+    clear
+    
+    if ! (find /usr/share/xsessions -name "*.desktop" &> /dev/null) || ! (find /usr/share/wayland-sessions -name "*.desktop" &> /dev/null); then
+        echo "${RED}Desktop environment already installed"
+        echo "Quitting this menu${RESET}"
+        read -rsn 1 -p "Press any key to continue ..."
+        return 0
+    fi 
+    
     PS3="Select a Desktop Environment: "
     local items=("gnome" "kde plasma" "xfce")
 
@@ -107,12 +117,12 @@ echo "${YELLOW}### Updating Void linux ...${RESET}"
 sudo xbps-install -Suy
 echo "${GREEN}### Void linux updated${RESET}"
 echo
-echo "${YELLOW}### Checking if git is installed ...${RESET}"
-if command -v git &> /dev/null; then
-    echo "${GREEN}### git is already installed -> nothing to do.${RESET}"
+echo "${YELLOW}### Checking if figlet is installed ...${RESET}"
+if command -v figlet &> /dev/null; then
+    echo "${GREEN}### figlet is already installed -> nothing to do.${RESET}"
 else
-    echo "${YELLOW}### git is not installed, installing it ...${RESET}"
-    sudo xbps-install -Sy git && echo "${GREEN}git successfully installed.${RESET}"
+    echo "${YELLOW}### figlet is not installed, installing it ...${RESET}"
+    sudo xbps-install -Sy figlet && echo "${GREEN}git successfully installed.${RESET}"
 fi 
 
 read -rsn 1 -p "Press any key to continue ..."
