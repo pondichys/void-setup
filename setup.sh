@@ -24,7 +24,6 @@ installBase() {
 
     # Install Void Service Manager and vpm wrapper for xbps-install
     sudo xbps-install -Sy vsv vpm
-
     
     # Install and configure socklog-void system logging daemon
     sudo xbps-install -Sy socklog-void
@@ -51,7 +50,6 @@ installBase() {
 
     # Install zram swap service
     sudo xbps-install -Sy zramen
-    #TODO: configure the compression zstd and enable the runit service
     if ! grep -iq "zstd" /etc/sv/zramen/conf
     then
         echo "export ZRAM_COMP_ALGORITHM=zstd" | sudo tee -a /etc/sv/zramen/conf
@@ -59,7 +57,7 @@ installBase() {
     sudo ln -s /etc/sv/zramen /var/service/
 
     # Create some user specific directories
-    declare userlocaldirs=("$HOME/.local/bin" "$HOME/.local/share/icons" "$HOME/.local/share/fonts" "$HOME/.local/share/themes")
+    local userlocaldirs=("$HOME/.local/bin" "$HOME/.local/share/icons" "$HOME/.local/share/fonts" "$HOME/.local/share/themes")
     for dir in "${userlocaldirs[@]}"; do
         if ! [ -d "${dir}" ]; then
             echo "${dir} does not exist -> creating it ..."
@@ -72,19 +70,95 @@ installBase() {
 
 installFonts() {
     # Get some emoji font and nerd fonts
-    # TODO nerd-fonts is a huge package -> ask for configrmation
+    # TODO nerd-fonts is a huge package -> ask for confirmation
     sudo xbps-install -Sy noto-fonts-emoji nerd-fonts
 }
 
 # Choose a DE / WM
+installX11() {
+    sudo xbps-install -Sy xorg
+}
+
+installWayland() {
+    sudo xbps-install -Sy wayland wayland-protocols wayland-utils
+}
+
+installDECommon() {
+    sudo xbps-install -Sy avahi dbus elogind xclip
+    sudo ln -sf /etc/sv/avahi-daemon /var/service
+    sudo ln -sf /etc/sv/dbus /var/service
+}
+
+installGnome() {
+    sudo xbps-install -Sy gnome-core
+}
+
 
 # Configure audio (PulseAudio or Pipewire)
+installPulseAudio() {
+    sudo xbps-install -Sy pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio
+    # Volume icon to be able to display in systray
+    sudo xbps-install -Sy volumeicon
+}
 
-# Install GPU modules
+installPipewire() {
+    echo "#################################################"
+    echo "#  Install Pipewire package"
+    echo "#################################################"
+    sudo xbps-install -Sy pipewire
+
+    echo "#################################################"
+    echo "#  Setup Pipewire package"
+    echo "#################################################"
+    local pw_conf_dir="/etc/pipewire/pipewire.conf.d"
+    if [ ! -d "${pw_conf_dir}" ]
+    then
+        sudo mkdir -p "${pw_conf_dir}"
+    fi
+
+    if [ -z "$(ls -A ${pw_conf_dir})" ]
+    then
+        echo "Linking pipewire configuration files"
+        sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf "${pw_conf_dir}/"
+        sudo ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf "${pw_conf_dir}/"
+        if [ -d /etc/xdg/autostart ]
+        then
+            echo "Enabling autostart of pipewire and pipewire-pulse through xdg"
+            sudo ln -sf /usr/share/applications/pipewire.desktop /etc/xdg/autostart/
+            sudo ln -sf /usr/share/applications/pipewire-pulse.desktop /etc/xdg/autostart/
+        else
+            echo "No /etc/xdg/autostart directory detected."
+        fi
+    else
+        echo "Pipewire configuration already exists -> nothing to do!"
+    fi
+}
+
+
+# Install GPU drivers
 
 # Configure flatpak if needed
+installFlatpak() {
+    # Check that dbus service is running
+    if ! sudo sv status dbus | grep ^run 2> /dev/null
+    then
+        echo "DBUS service not running!"
+        echo "Please install and/or start dbus service before installing flatpaks."
+        exit
+    else
+    # Install flatpak
+        sudo xbps-install -Sy flatpak
+    # Configure flathub repo
+        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    fi
+}
 
 # Enable gaming stuff
 
 # Include some themes?
+
+# Main menu
+PS3="Select an option: "
+items=("base" "fonts" "audio" "flatpak")
+
 
