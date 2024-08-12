@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
-# Do not run as root
-if [ "$(id -u)" = "0" ] ; then
-	echo "Do not run this script as root or with sudo!"
-	exit
-fi
+
+figlet -ckf slant "Flatpak"
 
 # Check that dbus service is running
-if ! sudo sv status dbus | grep ^run 2> /dev/null
+if ! (sudo sv status dbus | grep ^run 2> /dev/null)
 then
 	echo "DBUS service not running!"
 	echo "Please install and/or start dus service before installing flatpaks."

@@ -2,15 +2,7 @@
 
 # Void Setup
 # Run this script to install a base configuration
-
-# Do not run as root
-if [ $(id -u) = "0" ] ; then
-	echo "Do not run this script as root or with sudo!"
-	exit
-fi
-
-# First update the system
-sudo xbps-install -Suy
+figlet -ckf slant "Void base"
 
 # Install Void multilib and non-free repository
 sudo xbps-install -Sy void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree
@@ -24,9 +16,6 @@ sudo xbps-install -Sy xtools
 # Install Void Service Manager and vpm wrapper for xbps-install
 sudo xbps-install -Sy vsv vpm
 
-# Get some emoji font and nerd fonts
-sudo xbps-install -Sy noto-fonts-emoji nerd-fonts
-
 # Install and configure socklog-void system logging daemon
 sudo xbps-install -Sy socklog-void
 
@@ -36,28 +25,31 @@ sudo ln -sv /etc/sv/nanoklogd /var/service/
 # Install shells & tools
 sudo xbps-install -Sy bash bash-completion
 sudo xbps-install -Sy zsh zsh-completions
-sudo xbps-install -Sy fish-shell
+
+# Install some basic text editors
+sudo xbps-install -Sy micro nano vim
 
 # Install some base development packages
-sudo xbps-install -Sy base-devel
+# sudo xbps-install -Sy base-devel
 
 # Now some cool Terminal tools
-sudo xbps-install -Sy 7zip bat bottom chezmoi curl eza fastfetch fd fzf jq neovim ripgrep starship tmux unzip wget yazi zoxide
+# sudo xbps-install -Sy 7zip bat bottom chezmoi curl eza fastfetch fd fzf jq neovim ripgrep starship tmux unzip wget yazi zoxide
 
 # Install NetworkManager
 sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
 
 # Install git tools
-sudo xbps-install -Sy delta git github-cli lazygit
+sudo xbps-install -Sy git
+# sudo xbps-install -Sy delta git github-cli lazygit
 
-# Install zram swap service
-sudo xbps-install -Sy zramen
-#TODO: configure the compression zstd and enable the runit service
-if ! grep -iq "zstd" /etc/sv/zramen/conf
-then
-	echo "export ZRAM_COMP_ALGORITHM=zstd" | sudo tee -a /etc/sv/zramen/conf
-fi
-sudo ln -s /etc/sv/zramen /var/service/
+# # Install zram swap service
+# sudo xbps-install -Sy zramen
+# #TODO: configure the compression zstd and enable the runit service
+# if ! grep -iq "zstd" /etc/sv/zramen/conf
+# then
+# 	echo "export ZRAM_COMP_ALGORITHM=zstd" | sudo tee -a /etc/sv/zramen/conf
+# fi
+# sudo ln -s /etc/sv/zramen /var/service/
 
 # Create some user specific directories
 declare userlocaldirs=("$HOME/.local/bin" "$HOME/.local/share/icons" "$HOME/.local/share/fonts" "$HOME/.local/share/themes")

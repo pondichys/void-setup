@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Download latest release of Bibata-Modern-Ice cursor from Github
 BIBATA_URL=https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Ice.tar.gz
 
