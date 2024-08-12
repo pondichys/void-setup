@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Install everything to run Awesome window manager
 
 # Install base packages

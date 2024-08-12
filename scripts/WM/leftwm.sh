@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Install everything to run LeftWM tiling window manager
 
 # Install base packages

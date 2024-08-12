@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# TODO: check if PulseAudio is already installed / active to avoid conflicts
 echo "#################################################"
 echo "#  Install Pipewire package"
 echo "#################################################"
