@@ -13,7 +13,7 @@ installX11
 installWayland
 installDECommon
 
-sudo xbps-install -Sy gnome-core gnome-terminal
+sudo xbps-install -Sy gnome-core gnome-terminal gnome-tweaks extension-manager
 sudo xbps-install -Sy xdg-desktop-portal xdg-desktop-portal-gnome
 # Support for virtual filesystems in Nautilus
 sudo xbps-install -Sy gvfs-afc gvfs-mtp gvfs-smb
