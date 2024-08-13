@@ -65,20 +65,18 @@ installFlatpak() {
 # Desktop Environment menu
 deMenu() {
     
-    clear
-    
-    if ! (find /usr/share/xsessions -name "*.desktop" &> /dev/null) || ! (find /usr/share/wayland-sessions -name "*.desktop" &> /dev/null); then
-        echo "${RED}Desktop environment already installed"
-        echo "Quitting this menu${RESET}"
-        read -rsn 1 -p "Press any key to continue ..."
-        return 0
-    fi 
-    
     PS3="Select a Desktop Environment: "
     local items=("gnome" "kde plasma" "xfce")
 
     while true; do
         clear
+	    if [[ -f /usr/share/xsessions/*.desktop || -f /usr/share/wayland-sessions/*.desktop ]]; then
+	        echo "${RED}Desktop environment already installed"
+	        echo "Quitting this menu${RESET}"
+	        read -rsn 1 -p "Press any key to continue ..."
+	        return 0
+	    fi 
+
         printf "%s" "${YELLOW}"
         figlet -ckf slant "Desktop environments"
         printf "%s" "${RESET}"
