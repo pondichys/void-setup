@@ -56,7 +56,7 @@ declare userlocaldirs=("$HOME/.local/bin" "$HOME/.local/share/icons" "$HOME/.loc
 for dir in "${userlocaldirs[@]}"; do
 	if ! [ -d "${dir}" ]; then
 		echo "${dir} does not exist -> creating it ..."
-		mkdir "${dir}" && echo "${dir} created."
+		mkdir -p "${dir}" && echo "${dir} created."
 	else
 		echo "${dir} already exists -> nothing to do."
 	fi
