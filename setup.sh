@@ -31,7 +31,7 @@ installGnome() {
 }
 
 installKDE() {
-    bash "$setup_dir/scripts/DE/gnome.sh"
+    bash "$setup_dir/scripts/DE/kde.sh"
     read -rsn 1 -p "Press any key to continue ..."
 }
 
