@@ -14,6 +14,25 @@ export BLUE
 PURPLE=$(tput setaf 5)
 export PURPLE
 
+# Check keyboard config
+checkKeyboardConfig() {
+    true
+    if [ -f /etc/X11/xorg.conf.d/00-keyboard.conf ] && [ -f /etc/default/keyboard ]
+    then
+        echo "${GREEN}Keyboard configuration looks ok"
+        echo "Nothing to do.${RESET}"
+    elif ! [ -f /etc/X11/xorg.conf.d/00-keyboard.conf ] && [ -f /etc/default/keyboard ];    then
+        echo "${RED}Missing /etc/X11/xorg.conf.d/00-keyboard.conf file !${RESET}"
+        bash "$setup_dir/scripts/keyboard.sh x11"
+    elif ! [ -f /etc/default/keyboard  ] && [ -f /etc/X11/xorg.conf.d/00-keyboard.conf ]; then
+        echo "${RED}Missing /etc/default/keyboard file !${RESET}"
+        bash "$setup_dir/scripts/keyboard.sh default"
+    else
+        echo "${RED}Both files /etc/X11/xorg.conf.d/00/keyboard and /etc/default/keyboard are missing !${RESET}"
+        bash "$setup_dir/scripts/keyboard.sh"
+    fi
+}
+
 # Install base packages
 installBase() {
     bash "$setup_dir/scripts/void-base.sh"
@@ -70,12 +89,27 @@ deMenu() {
 
     while true; do
         clear
-	    if [[ -f /usr/share/xsessions/*.desktop || -f /usr/share/wayland-sessions/*.desktop ]]; then
-	        echo "${RED}Desktop environment already installed"
-	        echo "Quitting this menu${RESET}"
-	        read -rsn 1 -p "Press any key to continue ..."
-	        return 0
-	    fi 
+        # Check if there is a X11 DE/WM available
+	    for dfile in /usr/share/xsessions/*.desktop 
+        do
+            if [ -e  "$dfile" ]; then
+	            echo "${RED}A X11 desktop environment / window manager is already installed !"
+	            echo "Quitting this menu${RESET}"
+	            read -rsn 1 -p "Press any key to continue ..."
+	            return 0
+	        fi
+        done
+
+        # Check if there is a Wayland DE/WM installed
+        for dfile in /usr/share/wayland-sessions/*.desktop 
+        do
+            if [ -e  "$dfile" ]; then
+	            echo "${RED}A Wayland desktop environment or window manager is already installed !"
+	            echo "Quitting this menu${RESET}"
+	            read -rsn 1 -p "Press any key to continue ..."
+	            return 0
+	        fi
+        done
 
         printf "%s" "${YELLOW}"
         figlet -ckf slant "Desktop environments"
@@ -120,14 +154,18 @@ if command -v figlet &> /dev/null; then
     echo "${GREEN}### figlet is already installed -> nothing to do.${RESET}"
 else
     echo "${YELLOW}### figlet is not installed, installing it ...${RESET}"
-    sudo xbps-install -Sy figlet && echo "${GREEN}git successfully installed.${RESET}"
+    sudo xbps-install -Sy figlet && echo "${GREEN}Package figlet successfully installed.${RESET}"
 fi 
 
 read -rsn 1 -p "Press any key to continue ..."
 
 clear
-# Main menu
 
+# Checking keyboard config
+checkKeyboardConfig
+read -rsn 1 -p "Press any key to continue ..."
+
+# Main menu
 PS3="Select an option: "
 declare items=("Base packages" "Nerd fonts" "Desktop environments" "Flatpak")
 
