@@ -206,7 +206,7 @@ EOF
 xbps-install grub-x86_64-efi
 
 # Install grub
-grub-install --target=x86_64-efi --efi-directory=/boot/efi"
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
 ```
 
 ## Finish the installation
