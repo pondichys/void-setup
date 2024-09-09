@@ -68,7 +68,13 @@ btrfs su cr /mnt/@home
 btrfs su cr /mnt/@opt
 btrfs su cr /mnt/@root
 btrfs su cr /mnt/@cache
+btrfs su cr /mnt/@AccountsService
+btrfs su cr /mnt/@gdm
+btrfs su cr /mnt/@images
 btrfs su cr /mnt/@log
+btrfs su cr /mnt/@sddm
+btrfs su cr /mnt/@snapshots
+btrfs su cr /mnt/@spool
 btrfs su cr /mnt/@tmp
 btrfs su cr /mnt/@srv
 
@@ -79,9 +85,11 @@ umount /mnt
 mount -o ${BTRFS_OPTS},subvol=@ ${LINUX_PART} /mnt
 
 # Create the directories for boot/efi
-mkdir -p /mnt/boot/efi
-mkdir /mnt/{home,opt,root,srv,tmp,var}
-mkdir /mnt/var/{cache,log}
+mkdir -vp /mnt/boot/efi
+mkdir -v /mnt/{home,opt,root,.snapshots,srv,tmp,var}
+mkdir -v /mnt/var/{cache,lib,log,spool}
+mkdir -v /mnt/var/lib/{AccountsService,gdm,sddm}
+mkdir -vp /mnt/var/lib/libvirt/images
 
 # Mount other subvolumes
 mount -o ${BTRFS_OPTS},subvol=@home ${LINUX_PART} /mnt/home
@@ -90,7 +98,13 @@ mount -o ${BTRFS_OPTS},subvol=@root ${LINUX_PART} /mnt/root
 mount -o ${BTRFS_OPTS},subvol=@srv ${LINUX_PART} /mnt/srv
 mount -o ${BTRFS_OPTS},subvol=@tmp ${LINUX_PART} /mnt/tmp
 mount -o ${BTRFS_OPTS},subvol=@cache ${LINUX_PART} /mnt/var/cache
+mount -o ${BTRFS_OPTS},subvol=@AccountsService ${LINUX_PART} /mnt/var/lib/AccountsService
+mount -o ${BTRFS_OPTS},subvol=@gdm ${LINUX_PART} /mnt/var/lib/gdm
+mount -o ${BTRFS_OPTS},subvol=@sddm ${LINUX_PART} /mnt/var/lib/sddm
+mount -o ${BTRFS_OPTS},subvol=@images ${LINUX_PART} /mnt/var/lib/libvirt/images
 mount -o ${BTRFS_OPTS},subvol=@log ${LINUX_PART} /mnt/var/log
+mount -o ${BTRFS_OPTS},subvol=@snapshots ${LINUX_PART} /mnt/.snapshots
+mount -o ${BTRFS_OPTS},subvol=@spool ${LINUX_PART} /mnt/var/spool
 
 # Mount /boot/efi
 mount -o noatime ${EFI_PART} /mnt/boot/efi
@@ -124,8 +138,10 @@ chmod 755 /
 # Setup root password
 passwd root
 
+HOSTNAME=<insert your hostname here>
+
 # Setup host name
-echo voidvm > /etc/hostname
+echo "${HOSTNAME}" > /etc/hostname
 
 # Edit /etc/rc.conf with vim (or another editor you installed with the base system)
 # Adapt the KEYMAP section to load your keyboard layout.
@@ -133,6 +149,7 @@ echo voidvm > /etc/hostname
 
 # Set your timezone
 # You can list the available options with ls -l /usr/share/zoneinfo
+# The line below is valid for my timezone
 ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime
 
 # Set locales
@@ -141,12 +158,13 @@ echo "en_US.UTF-8 UTF-8" >> /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
 
 # Optional - create additional user
-useradd seb
-passwd seb
-usermod -aG wheel seb
+USERNAME=<insert your user name here>
+useradd -m ${USERNAME}
+passwd ${USERNAME}
+usermod -aG wheel ${USERNAME}
 
 # Edit sudoer files to allow members of wheel group to use sudo
-EDITOR=micro visudo
+EDITOR=vim visudo
 
 # Synchronize and add repos
 xbps-install -S
@@ -166,10 +184,16 @@ UUID=$ROOT_UUID / btrfs $BTRFS_OPTS,subvol=@ 0 1
 UUID=$ROOT_UUID /home btrfs $BTRFS_OPTS,subvol=@home 0 2
 UUID=$ROOT_UUID /opt btrfs $BTRFS_OPTS,subvol=@opt 0 2
 UUID=$ROOT_UUID /root btrfs $BTRFS_OPTS,subvol=@root 0 2
+UUID=$ROOT_UUID /.snapshots btrfs $BTRFS_OPTS,subvol=@snapshots 0 2
 UUID=$ROOT_UUID /srv btrfs $BTRFS_OPTS,subvol=@srv 0 2
 UUID=$ROOT_UUID /tmp btrfs $BTRFS_OPTS,subvol=@tmp 0 2
 UUID=$ROOT_UUID /var/cache btrfs $BTRFS_OPTS,subvol=@cache 0 2
+UUID=$ROOT_UUID /var/lib/AccountsService btrfs $BTRFS_OPTS,subvol=@AccountsService 0 2
+UUID=$ROOT_UUID /var/lib/gdm btrfs $BTRFS_OPTS,subvol=@gdm 0 2
+UUID=$ROOT_UUID /var/lib/libvirt/images btrfs $BTRFS_OPTS,subvol=@images 0 2
+UUID=$ROOT_UUID /var/lib/sddm btrfs $BTRFS_OPTS,subvol=@sddm 0 2
 UUID=$ROOT_UUID /var/log btrfs $BTRFS_OPTS,subvol=@log 0 2
+UUID=$ROOT_UUID /var/spool btrfs $BTRFS_OPTS,subvol=@spool 0 2
 
 UUID=$EFI_UUID /boot/efi vfat defaults,noatime 0 2
 tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
