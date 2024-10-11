@@ -3,7 +3,7 @@
 # Common functions for all Desktop Environments
 
 installX11() {
-    sudo xbps-install -Sy xorg
+    sudo xbps-install -Sy xorg xclip
 }
 
 installWayland() {
@@ -11,6 +11,6 @@ installWayland() {
 }
 
 installDECommon() {
-    sudo xbps-install -Sy avahi elogind xclip
+    sudo xbps-install -Sy avahi elogind 
     sudo ln -sf /etc/sv/avahi-daemon /var/service
 }
