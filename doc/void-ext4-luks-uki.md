@@ -183,10 +183,11 @@ LUKS_UUID=$(blkid -s UUID -o value $LINUX_PART)
 
 # Edit /etc/default/dracut-uefi-hook to adjust some settings
 # You need to set KERNEL_CMDLINE to specify the rd.luks.uuid
+# If your device is a SSD and support TRIM add also rd.luks.allow-discards
 # I also adjust UEFI_BUNDLE_DIR to /efi/EFI/void instead of standard /boot/efi/EFI/void
 cat <<EOF >> /etc/default/dracut-uefi-hook
 # My custom settings
-KERNEL_CMDLINE="rd.luks.name=$LUKS_UUID=cryptroot root=/dev/mapper/cryptroot loglevel=4"
+KERNEL_CMDLINE="rd.luks.name=$LUKS_UUID=cryptroot root=/dev/mapper/cryptroot rD.luks.allow-discards loglevel=4"
 UEFI_BUNDLE_DIR="/efi/EFI/void/"
 EOF
 

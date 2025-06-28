@@ -2,9 +2,7 @@
 
 This procedure describes how to install Void Linux using an archlinux like experience.
 
-Additional info
-
-[Tune LUKS Parameters for Unlock Speed in GRUB - Gentoo Configuration Guide: Full Disk LUKS2 with GRUB and systemd](https://leo3418.github.io/collections/gentoo-config-luks2-grub-systemd/tune-parameters.html)
+## Prepare the installation
 
 Download the Void Linux base image for glibc (musl can be quite annoying with some software)
 
@@ -179,6 +177,7 @@ echo "rd.luks.uuid=$LUKS_UUID" >> /etc/default/grub
 
 # Edit /etc/default/grub and add rd.luks.uuid=$LUKS_UUID to the line 
 # GRUB_CMDLINE_LINUX_DEFAULT
+# If your device is a SSD and support TRIM add also rd.luks.allow-discards
 # Don't forget to save
 
 # Install grub

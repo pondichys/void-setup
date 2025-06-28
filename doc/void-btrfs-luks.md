@@ -230,6 +230,7 @@ echo $LUKS_UUID >> /etc/default/grub
 
 # Edit /etc/default/grub and add rd.luks.uuid=$LUKS_UUID to the line 
 # GRUB_CMDLINE_LINUX_DEFAULT
+# If your device is a SSD and support TRIM add also rd.luks.allow-discards
 # Don't forget to save
 
 # Install grub
