@@ -33,14 +33,12 @@ sudo xbps-install -Sy micro nano vim
 # sudo xbps-install -Sy base-devel
 
 # Now some cool Terminal tools
-# sudo xbps-install -Sy 7zip bat bottom chezmoi curl eza fastfetch fd fzf jq neovim ripgrep starship tmux unzip wget yazi zoxide
 
 # Install NetworkManager
 sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
 
 # Install git tools
 sudo xbps-install -Sy git
-# sudo xbps-install -Sy delta git github-cli lazygit
 
 # # Install zram swap service
 # sudo xbps-install -Sy zramen
