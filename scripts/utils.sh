@@ -10,7 +10,7 @@ check_svc() {
   local sv_link="/var/service/${service_name}"
 
   # Check if service definition exists
-  if [ -d "sv_dir" ] && [ -f "$sv_dir/run" ]; then
+  if [ -d "$sv_dir" ] && [ -f "$sv_dir/run" ]; then
     echo "Service definition '$service_name' found in '$sv_dir'."
     return 0
   else
@@ -29,7 +29,7 @@ enable_svc() {
     return 0
   else
     echo "Service '$service_name' is NOT enabled. Enabling it now ..."
-    sudo ln -s "sv_dir" "sv_link" || { echo "Could not enable service. Check permissions."; return 1; }
+    sudo ln -s "$sv_dir" "$sv_link" || { echo "Could not enable service. Check permissions."; return 1; }
     echo "Service '$service_name' enabled."
   fi
   return 0
