@@ -25,14 +25,13 @@ sudo ln -sv /etc/sv/nanoklogd /var/service/
 # Install shells & tools
 sudo xbps-install -Sy bash bash-completion
 sudo xbps-install -Sy zsh zsh-completions
+sudo xbps-install -Sy fish-shell 
 
-# Install some basic text editors
-sudo xbps-install -Sy micro nano vim
+# Install a basic text editors
+sudo xbps-install -Sy vim
 
 # Install some base development packages
 # sudo xbps-install -Sy base-devel
-
-# Now some cool Terminal tools
 
 # Install NetworkManager
 sudo xbps-install -Sy NetworkManager NetworkManager-openvpn network-manager-applet
